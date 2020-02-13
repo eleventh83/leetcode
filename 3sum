@@ -1,3 +1,9 @@
+'''
+Runtime: 584 ms, faster than 96.05% of Python3 online submissions for 3Sum.
+Memory Usage: 16.8 MB, less than 56.43% of Python3 online submissions for 3Sum.
+'''
+
+
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         # sort
