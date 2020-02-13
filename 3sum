@@ -1,0 +1,38 @@
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        # sort
+        nums.sort()
+        
+        #split neg, pos
+        nums_neg = [v for v in nums if v < 0]
+        nums_pos = [v for v in nums if v >= 0]
+
+        result = set()
+        
+        # 3 pos => 0,0,0
+        if nums_pos[:3] == [0,0,0]:
+            result.add((0,0,0))
+        
+        # 1 neg, 2 pos
+        for nn in nums_neg:
+            _res = {}
+            for pn in nums_pos:
+                if pn + nn > 0:
+                    break
+                if -(nn + pn) in _res:
+                    result.add((-(nn+pn), nn, pn))
+                else:
+                    _res[pn] = None
+
+        # 1 pos, 2 neg
+        for pn in nums_pos[::-1]:
+            _res = {}
+            for nn in nums_neg[::-1]:
+                if pn + nn < 0:
+                    break
+                if -(nn + pn) in _res:
+                    result.add((nn, -(nn+pn), pn))
+                else:
+                    _res[nn] = None
+
+        return result
